@@ -1,0 +1,26 @@
+{
+    "hash": "0x9cf51f0e4c53bc9f3bdb56af95d13e0768936f95fa00dc48f95efc53dcf7b40b",
+    "trace": [
+        {
+            "action": "phoenix [10415223530993951539670 ether] => oblivion.addLiquidityETH(token=token_USDT,amountTokenDesired=17333333635773,amountTokenMin=17331600302409,amountETHMin=10414182008640852144516,to=phoenix,deadline=1696284119)",
+            "explanation": "phoenix operate oblivion to add liquidity for USDT / WETH pool and  send 10415223530993951539670 ether"
+        },
+        {
+            "action": "oblivion => token_USDT.transferFrom(sender=phoenix,recipient=pulsar,amount=17333333635773)",
+            "explanation": "oblivion transfer 17333333635773 USDT token from phoenix to pulsar pool"
+        },
+        {
+            "action": "oblivion [10415223530993951539670 ether] => token_WETH.deposit()",
+            "explanation": "oblivion get 10415223530993951539670 WETH token with phoenix's 10415223530993951539670 ether"
+        },
+        {
+            "action": "oblivion => token_WETH.transfer(recipient=pulsar,amount=10415223530993951539670)",
+            "explanation": "oblivion transfer 10415223530993951539670 WETH token to pulsar pool"
+        },
+        {
+            "action": "oblivion => pulsar.mint(to=phoenix)",
+            "explanation": "oblivion mint pulsar liquidity token to pulsar"
+        }
+    ],
+    "summarize": "phoenix operation oblivion and add liquidity to pulsar pool with 10415223530993951539670 ether and 17333333635773 USDT token"
+}

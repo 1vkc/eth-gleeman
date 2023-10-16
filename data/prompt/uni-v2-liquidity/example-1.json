@@ -1,0 +1,30 @@
+{
+    "hash": "0x538f3af48dbd028f9f5267247721406c0fe88e80a124e11cc250a09686fb7c80",
+    "trace": [
+        {
+            "action": "nova [353190000000000000000 ether] => oblivion.addLiquidityETH(token=token_USDC,amountTokenDesired=473799508662,amountTokenMin=450109533229,amountETHMin=335530500000000000000,to=nova,deadline=1655088426)",
+            "explanation": "nova operate oblivion to add liquidity for USDC / WETH pool and  send 353190000000000000000 ether"
+        },
+        {
+            "action": "oblivion => token_USDC.transferFrom(sender=nova,recipient=onyx,amount=473799508662)",
+            "explanation": "griffin transfer 473799508662 USDC token from nova to onyx pool"
+        },
+        {
+            "action": "oblivion [353189517640682618581 ether] => token_WETH.deposit()",
+            "explanation": "oblivion get 353189517640682618581 WETH token with nova's 353190000000000000000 ether"
+        },
+        {
+            "action": "oblivion => token_WETH.transfer(recipient=onyx,amount=353189517640682618581)",
+            "explanation": "oblivion transfer 353189517640682618581 WETH token to onyx pool"
+        },
+        {
+            "action": "oblivion => onyx.mint(to=nova)",
+            "explanation": "oblivion mint onyx liquidity token to nova"
+        },
+        {
+            "action": "oblivion [482359317381419 ether] => nova",
+            "explanation": "oblivion return unused 482359317381419 ether to nova"
+        }
+    ],
+    "summarize": "nomad operation oblivion and add liquidity to nova pool with 353189517640682618581 ether and 473799508662 USDC token"
+}

@@ -1,0 +1,31 @@
+
+{
+    "hash": "0x2a0f7f9191d74299350059b99f3366ca58e316464690913b56cd37b6340a969b",
+    "trace": [
+        {        
+            "action": "triton => nomad.execute(commands=bytes,inputs=[],deadline=1697358611)",
+            "explanation": "sender call uniswapV3 router contract do something with a deadline(UNIX timestamp 1697358611)"
+        },
+        {        
+            "action": "nomad => valkyrie.swap(recipient=triton,zeroForOne=False,amountSpecified=3000198800,sqrtPriceLimitX96=1461446703485210103287273052203988822378723970341,data=bytes)",
+            "explanation": "uniswapV3 router contract call USDC-FRAX pair contract to buy FRAX with a limited price"
+        },
+        {        
+            "action": "valkyrie => token_FRAX.transfer(_to=triton,_value=2999800616012280875652)",
+            "explanation": "USDC-FRAX pair contract call FRAX contract to transfer 2999.800616012280875652 FRAX to sender's address"
+        },
+        {        
+            "action": "valkyrie => nomad.uniswapV3SwapCallback(amount0Delta=-2999800616012280875652,amount1Delta=3000198800,data=bytes)",
+            "explanation": "USDC-FRAX pair contract call uniswapV3 router contract's callback method for liquidity requirement"
+        },
+        {        
+            "action": "nomad => oblivion.transferFrom(from=triton,to=valkyrie,amount=3000198800,token=token_USDC)",
+            "explanation": "uniswapV3 router contract call uniswap approvement contract try to transfer 3000.1988 USDC from sender's address to USDC-FRAX contract"
+        },
+        {        
+            "action": "oblivion => token_USDC.transferFrom(_from=triton,_to=valkyrie,_value=3000198800)",
+            "explanation": "uniswapV3 router contract call USDC contract to transfer 3000.1988 USDC from sender's address to USDC-FRAX contract"
+        }
+    ],
+    "summarize": "user call uniswapv3 router contract to swap 3000.1988 USDC to 2999.800616012280875652 FRAX"
+}

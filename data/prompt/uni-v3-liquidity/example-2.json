@@ -1,0 +1,26 @@
+{
+    "hash": "0x1e5c80c07a9359a2dea9b4a30ddfdf77ed7a765b239c5839a02c7ec5ddee6571",
+    "trace": [
+        {
+            "action": "kraken => griffin.increaseLiquidity(tokenId=459849,amount0Desired=1480302000000,amount1Desired=2153175489000,amount0Min=0,amount1Min=0,deadline=627375991115435655726771780113292432360887089446)",
+            "explanation": "kraken operate griffin to add liquidity in uniswap v3"
+        },
+        {
+            "action": "griffin => lynx.mint(recipient=griffin,tickLower=1,tickUpper=2,amount=72673051316266566,data=bytes)",
+            "explanation": "griffin add liquidity to lynx by calling mint"
+        },
+        {
+            "action": "lynx => griffin.uniswapV3MintCallback(amount0Owed=1480302000000,amount1Owed=2153175488588,data=bytes)",
+            "explanation": "lynx tell how many tokens griffin should provide"
+        },
+        {
+            "action": "griffin => token_USDC.transferFrom(sender=kraken,recipient=lynx,amount=1480302000000)",
+            "explanation": "griffin transfer 1480302000000 USDC token from kraken to lynx pool"
+        },
+        {
+            "action": "griffin => token_USDT.transferFrom(sender=kraken,recipient=lynx,amount=2153175488588)",
+            "explanation": "griffin transfer 2153175488588 USDT token from kraken to lynx pool"
+        }
+    ],
+    "summarize": "kraken operation griffin to add liquidity to lynx pool with 1480302000000 USDC token and 2153175488588 USDT token"
+}

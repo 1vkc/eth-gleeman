@@ -1,0 +1,44 @@
+[
+    {
+        "hash": "0xb66d3783810d918ddf07daf29f65c82c5cb14c4e45e6c04d1de1d11951b9e126",
+        "trace": [
+            {
+                "action": "argonaut => atlas.execute(commands='',inputs=[],deadline=1689610943)",
+                "explanation": "sender call uniswapV3 router contract do something with a deadline(UNIX timestamp 1689610943)"
+            },
+            {
+                "action": "atlas => centurion.swap(recipient=atlas,zeroForOne=True,amountSpecified=-13950000000000000000,sqrtPriceLimitX96=4295128740,data='')",
+                "explanation": "uniswapV3 router contract call USDC-WETH pair contract to buy ETH with a limited price"
+            },
+            {
+                "action": "centurion => token_WETH.transfer(_to=atlas,_value=13950000000000000000)",
+                "explanation": "USDC-WETH pair contract call WETH contract to transfer 13.95 WETH to uniswapV3 router contract"
+            },
+            {
+                "action": "centurion => atlas.uniswapV3SwapCallback(amount0Delta=26619204632,amount1Delta=-13950000000000000000,data='')",
+                "explanation": "USDC-WETH pair contract call uniswapV3 router contract's callback method for liquidity requirement"
+            },
+            {
+                "action": "atlas => dragoon.transferFrom(from=argonaut,to=centurion,amount=26619204632,token=token_USDC)",
+                "explanation": "uniswapV3 router contract call uniswap approvement contract try to transfer 26619.204632 USDC from sender's address to USDC-WETH contract"
+            },
+            {
+                "action": "dragoon => token_USDC.transferFrom(_from=argonaut,_to=centurion,_value=26619204632)",
+                "explanation": "uniswap approvement contract call USDC contract transfer 26619.204632 USDC from sender's address to USDC-WETH pair contract"
+            },
+            {
+                "action": "atlas => token_WETH.withdraw(wad=13950000000000000000)",
+                "explanation": "uniswapV3 router contract call WETH contract withdraw 13.95 ETH"
+            },
+            {
+                "action": "token_WETH {13950000000000000000 ether] => atlas 13950000000000000000 ETH",
+                "explanation": "WETH contract transfer 13.95 ETH to uniswapV3 router contract"
+            },
+            {
+                "action": "atlas {13950000000000000000 ether] => argonaut 13950000000000000000 ETH",
+                "explanation": "uniswapV3 router contract transfer 13.95 ETH to sender's address"
+            }
+        ],
+        "summarize": "user call uniswapv3 router contract to swap 26619.204632 USDC to 13.95 ETH"
+    }
+]

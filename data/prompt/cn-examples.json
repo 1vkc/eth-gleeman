@@ -1,0 +1,36 @@
+[
+    {
+        "hash": "0xb66d3783810d918ddf07daf29f65c82c5cb14c4e45e6c04d1de1d11951b9e126",
+        "trace": [
+            {
+                "action": "argonaut => atlas.execute(commands='',inputs=[],deadline=1689610943)",
+                "explanation": "此调用可以忽略"
+            },
+            {
+                "action": "atlas => centurion.swap(recipient=atlas,zeroForOne=True,amountSpecified=-13950000000000000000,sqrtPriceLimitX96=4295128740,data='')",
+                "explanation": "uniswapV3路由合约尝试调用USDC-WETH交易对以一个价格限制购买ETH"
+            },
+            {
+                "action": "centurion => token_WETH.transfer(_to=atlas,_value=13950000000000000000)",
+                "explanation": "USDC-WETH交易对向uniswapV3路由合约转账13.95WETH"
+            },
+            {
+                "action": "centurion => atlas.uniswapV3SwapCallback(amount0Delta=26619204632,amount1Delta=-13950000000000000000,data='')",
+                "explanation": "USDC-WETH交易对调用uniswapV3路由合约的回调以保证交易满足当前流动性需求"
+            },
+            {
+                "action": "atlas => dragoon.transferFrom(from=argonaut,to=centurion,amount=26619204632,token=token_USDC)",
+                "explanation": "调用uniswap统一授权合约尝试从用户地址向USDC-WETH交易对转账26619.204632USDC"
+            },
+            {
+                "action": "dragoon => token_USDC.transferFrom(_from=argonaut,_to=centurion,_value=26619204632)",
+                "explanation": "uniswapV3路由合约uniswap统一授权合约尝试从用户地址向USDC-WETH交易对转账26619.204632USDC"
+            },
+            {
+                "action": "atlas => token_WETH.withdraw(wad=13950000000000000000)",
+                "explanation": "uniswapV3路由合约将收到的13.95WETH兑换为ETH"
+            }
+        ],
+        "summarize": "用户使用uniswapv3路由合约将26619.204632USDC兑换为13.95ETH"
+    }
+]

@@ -1,0 +1,34 @@
+{
+    "hash": "0x6d461f955e86b49d49abad652e274f7f1c3a6b6d531794b567734b67b77fb6ee",
+    "trace": [
+        {
+            "action": "nomad {1516733040839763754557 ether] => griffin.multicall(data=[bytes, bytes])",
+            "explanation": "nomad operate griffin and send 1516733040839763754557 ether to griffin"
+        },
+        {
+            "action": "griffin => hyperion.mint(recipient=griffin,tickLower=201840,tickUpper=203850,amount=1125302380939539457,data=bytes)",
+            "explanation": "griffin add liquidity to hyperion by calling mint"
+        },
+        {
+            "action": "hyperion => griffin.uniswapV3MintCallback(amount0Owed=1991772012101,amount1Owed=1516733040839763753425,data=bytes)",
+            "explanation": "hyperion tell how many tokens griffin should provide"
+        },
+        {
+            "action": "griffin => token_USDC.transferFrom(sender=nomad,recipient=hyperion,amount=1991772012101)",
+            "explanation": "griffin transfer 1991772012101 USDC token from goliath to hyperion pool"
+        },
+        {
+            "action": "griffin [1516733040839763753425 ether] => token_WETH.deposit()",
+            "explanation": "griffin get 1516733040839763753425 WETH token with goliath's 1516733040839763754557 ether"
+        },
+        {
+            "action": "griffin => token_WETH.transfer(recipient=hyperion,amount=1516733040839763753425)",
+            "explanation": "griffin transfer 1516733040839763753425 WETH token to hyperion pool"
+        },
+        {
+            "action": "griffin [1132 ether] => nomad",
+            "explanation": "griffin return unused 1132 ether to nomad"
+        }
+    ],
+    "summarize": "nomad operation griffin and add liquidity to hyperion pool with 1516733040839763753425 ether and 1991772012101 USDC token"
+}

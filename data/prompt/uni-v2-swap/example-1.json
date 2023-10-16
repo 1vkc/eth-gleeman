@@ -1,0 +1,26 @@
+{
+    "hash": "0xb610aabb93e57163921c70dbe4e018c3b9de0bda6886ed2d02e974ad50691617",
+    "trace": [
+        {        
+            "action": "argonaut [580093856500020300 ether] => atlas.swapExactETHForTokens(amountOutMin=13846600923975796559,path=['0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'],to=argonaut,deadline=1697359671)",
+            "explanation": "sender call uniswapV2 router contract to swap 0.5800938565000203 ETH to at least 13.846600923975796559 with deadline(UNIX timestamp 1697359671)"
+        },
+        {        
+            "action": "atlas [580093856500020300 ether] => token_WETH.deposit()",
+            "explanation": "uniswapV2 router contract call WETH contract deposit 0.5800938565000203 ETH to WETH"
+        },
+        {        
+            "action": "atlas => token_WETH.transfer(_to=chronos,_value=580093856500020300)",
+            "explanation": "uniswapV2 router contract call WETH contract to transfer 0.5800938565000203 WETH to WETH-AAVE pair contract"
+        },
+        {        
+            "action": "atlas => chronos.swap(amount0Out=13846600923975796559,amount1Out=0,to=argonaut,data=bytes)",
+            "explanation": "uniswapV2 router contract call WETH-AAVE pair contract to swap WETH received to 13.846600923975796559 AAVE"
+        },
+        {        
+            "action": "chronos => token_AAVE.transfer(_to=argonaut,_value=13846600923975796559)",
+            "explanation": "WETH-AAVE pair contract transfer 13.846600923975796559 AAVE above to sender's address"
+        }
+    ],
+    "summarize": ""
+}

@@ -1,0 +1,30 @@
+{
+    "hash": "0x1ac28b31cf676873e8467c50367b93e66f4896385bfb46262c31a2c6a256dfee",
+    "trace": [
+        {        
+            "action": "scorpio {130439927451746891 ether} => atlas.swapETHForExactTokens(amountOut=200000000,path=['0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', '0xdAC17F958D2ee523a2206206994597C13D831ec7'],to=seraph,deadline=1697388244)",
+            "explanation": "sender call uniswapV2 router contract to swap at most 0.130439927451746891 ETH to 200 USDT with deadline(UNIX timestamp 1697388244)"
+        },
+        {        
+            "action": "atlas {129148443021531575 ether} => token_WETH.deposit()",
+            "explanation": "uniswapV2 router contract call WETH contract deposit 0.129148443021531575 ETH to WETH"
+        },
+        {        
+            "action": "atlas => token_WETH.transfer(_to=sentinel,_value=129148443021531575)",
+            "explanation": "uniswapV2 router contract call WETH contract to transfer 0.129148443021531575 WETH to WETH-USDT pair contract"
+        },
+        {        
+            "action": "atlas => sentinel.swap(amount0Out=0,amount1Out=200000000,to=seraph,data=bytes)",
+            "explanation": "uniswapV2 router contract call WETH-USDT pair contract to swap WETH received to 200 USDT"
+        },
+        {        
+            "action": "sentinel => token_USDT.transfer(_to=seraph,_value=200000000)",
+            "explanation": "WETH-USDT pair contract call USDT contract to transfer 200 USDT to sender's address"
+        },
+        {        
+            "action": "atlas {1291484430215316 ether} => scorpio",
+            "explanation": "uniswapV2 router contract pay 0.001291484430215316 back to sender's address"
+        }
+    ],
+    "summarize": ""
+}

@@ -1,0 +1,22 @@
+{
+    "hash": "0xe3b8feefb51ef68ffe21f22ef2e759f6b0b8902a9699713cea593227910a3f04",
+    "trace": [
+        {
+            "action": "orion => oblivion.addLiquidity(tokenA=token_DAI,tokenB=token_USDC,amountADesired=51574073557671254232097,amountBDesired=51533679456,amountAMin=51316203189882897960936,amountBMin=51276011059,to=orion,deadline=1655379576)",
+            "explanation": "orion operate oblivion to add liquidity for DAI / USDC pool"
+        },
+        {
+            "action": "oblivion => token_DAI.transferFrom(sender=orion,recipient=phantom,amount=51573506280572233143441)",
+            "explanation": "oblivion transfer 51573506280572233143441 DAI token from orion to phantom pool"
+        },
+        {
+            "action": "oblivion => token_USDC.transferFrom(sender=orion,recipient=phantom,amount=51533679456)",
+            "explanation": "oblivion transfer 51533679456 USDC token from orion to phantom pool"
+        },
+        {
+            "action": "oblivion => phantom.mint(to=orion)",
+            "explanation": "oblivion mint phantom liquidity token to orion"
+        }
+    ],
+    "summarize": "orion operation oblivion and add liquidity to phantom pool with 51573506280572233143441 DAI token and 51533679456 USDC token"
+}

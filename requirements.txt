@@ -1,0 +1,8 @@
+web3
+python-dotenv
+py-etherscan-api
+pandas
+openai
+langchain
+simpleaichat
+streamlit

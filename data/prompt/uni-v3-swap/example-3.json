@@ -1,0 +1,31 @@
+
+{
+    "hash": "0xd5a1fd40ba069324d5931176b9218942b4c607e932b8278458b4104be4eb23a2",
+    "trace": [
+        {        
+            "action": "spartan => nomad.execute(commands=bytes,inputs=[],deadline=1697382983)",
+            "explanation": "sender call uniswapV3 router contract do something with a deadline(UNIX timestamp 1697382983)"
+        },
+        {        
+            "action": "nomad => specter.swap(recipient=spartan,zeroForOne=True,amountSpecified=2915580000000000000000,sqrtPriceLimitX96=4295128740,data=bytes)",
+            "explanation": "uniswapV3 router contract call USDC-DAI pair contract to buy USDC with a limited price"
+        },
+        {        
+            "action": "specter => token_USDC.transfer(_to=spartan,_value=2915320599)",
+            "explanation": "USDC-DAI pair contract call USDC contract to transfer 2915.320599 USDC to sender's address"
+        },
+        {        
+            "action": "specter => nomad.uniswapV3SwapCallback(amount0Delta=2915580000000000000000,amount1Delta=-2915320599,data=bytes)",
+            "explanation": "USDC-DAI pair contract call uniswapV3 router contract's callback method for liquidity requirement"
+        },
+        {        
+            "action": "nomad => oblivion.transferFrom(from=spartan,to=specter,amount=2915580000000000000000,token=token_DAI)",
+            "explanation": "uniswapV3 router contract call uniswap approvement contract try to transfer 2915.58 DAI from sender's address to USDC-DAI contract"
+        },
+        {        
+            "action": "oblivion => token_DAI.transferFrom(_from=spartan,_to=specter,_value=2915580000000000000000)",
+            "explanation": "uniswapV3 router contract call DAI contract to transfer 2915.58 DAI from sender's address to USDC-DAI contract"
+        }
+    ],
+    "summarize": "user call uniswapv3 router contract to swap 2915.58 DAI to 2915.320599 USDC"
+}
